@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react"
 
-export default function page() {
+import Banner from "./_component/page/home/Banner"
+
+export default function Page() {
   return (
-    <div>
-      this is home page
-    </div>
+    <main>
+      <Banner />
+    </main>
   )
 }
