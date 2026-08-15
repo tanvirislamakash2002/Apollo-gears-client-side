@@ -1,6 +1,7 @@
 import React from "react"
 
 import BannerButton from "./BannerButton"
+import MotionCar from "./MotionCar"
 
 export default function Banner() {
   return (
@@ -13,6 +14,7 @@ export default function Banner() {
         </p>
 
         <BannerButton />
+        <MotionCar />
       </div>
     </section>
   )
