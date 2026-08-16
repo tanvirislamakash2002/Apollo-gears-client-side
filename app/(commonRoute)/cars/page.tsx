@@ -1,9 +1,17 @@
 import React from 'react'
 
-export default function page() {
+export default async function page() {
+  const data = await fetch("http://localhost:5000/api/v1/cars")
+  const cars = await data.json()
+  console.log(cars)
   return (
     <div>
-      Cars page
+      <h1>Cars</h1>
+      <ul>
+        {cars?.data?.map((car: any) => (
+          <li key={car.id}>{car.make}{car.model}</li>
+        ))}
+      </ul>
     </div>
   )
 }
