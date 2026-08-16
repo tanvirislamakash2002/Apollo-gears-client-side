@@ -1,3 +1,6 @@
+
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import React from 'react'
 
 export default async function page() {
@@ -9,7 +12,12 @@ export default async function page() {
       <h1>Cars</h1>
       <ul>
         {cars?.data?.map((car: any) => (
-          <li key={car.id}>{car.make}{car.model}</li>
+          <div key={car.id}>          
+          <li>{car.make}{car.model}</li>
+            <Button>
+              <Link href={`/cars/${car?.id}`}>view Details</Link>
+            </Button>
+            </div>
         ))}
       </ul>
     </div>
