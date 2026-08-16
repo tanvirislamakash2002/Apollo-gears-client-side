@@ -9,7 +9,7 @@ type DashboardLayoutProps = {
 }
 
 export default function DashboardLayout({ children, admin, user, driver }: DashboardLayoutProps) {
-    const role = "admin"
+    const role = "admin" as "admin"|"driver"|"user"
     return (
         <div>
             {role === "admin" && admin}
