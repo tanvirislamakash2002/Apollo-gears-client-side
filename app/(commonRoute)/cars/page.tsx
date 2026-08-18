@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import React from 'react'
+import TotalProduct from './TotalProduct'
 
 export async function generateMetadata() {
   const data = await fetch("")
@@ -16,7 +17,7 @@ export default async function page() {
   const cars = await data.json()
   console.log(cars)
   return (
-    <div>
+    <div className='p-4 border rounded'>
       <h1>Cars</h1>
       <ul>
         {cars?.data?.map((car: any) => (
@@ -28,6 +29,7 @@ export default async function page() {
           </div>
         ))}
       </ul>
+      <TotalProduct />
     </div>
   )
 }
