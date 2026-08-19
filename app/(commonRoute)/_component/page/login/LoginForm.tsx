@@ -1,6 +1,9 @@
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 export default function LoginForm() {
     return (
@@ -15,10 +18,10 @@ export default function LoginForm() {
 
             <form action="#" className="space-y-5">
                 <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium">
+                    <Label htmlFor="email">
                         Email address
-                    </label>
-                    <input
+                    </Label>
+                    <Input
                         id="email"
                         name="email"
                         type="email"
@@ -31,14 +34,14 @@ export default function LoginForm() {
 
                 <div className="space-y-2">
                     <div className="flex items-center justify-between gap-4">
-                        <label htmlFor="password" className="text-sm font-medium">
+                        <Label htmlFor="password">
                             Password
-                        </label>
+                        </Label>
                         <Link href="#" className="text-sm font-medium text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">
                             Forgot password?
                         </Link>
                     </div>
-                    <input
+                    <Input
                         id="password"
                         name="password"
                         type="password"
@@ -49,14 +52,12 @@ export default function LoginForm() {
                     />
                 </div>
 
-                <label className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <input
-                        type="checkbox"
+                <Label className="text-muted-foreground">
+                    <Checkbox
                         name="remember"
-                        className="size-4 rounded border-input accent-primary"
                     />
                     Remember me
-                </label>
+                </Label>
 
                 <Button type="submit" size="lg" className="h-11 w-full">
                     Sign in to Apollo Gears
