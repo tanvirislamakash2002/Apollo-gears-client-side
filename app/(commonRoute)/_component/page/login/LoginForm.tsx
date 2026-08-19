@@ -1,11 +1,17 @@
+"use client"
+
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useActionState } from "react"
+import { loginAction } from "@/app/(commonRoute)/_action/auth"
 
 export default function LoginForm() {
+    const [state, formAction, pending] = useActionState(loginAction, null)
+    console.log(state, pending)
     return (
         <section className="w-full rounded-2xl border border-border bg-background p-6 shadow-sm sm:p-8">
             <div className="mb-8">
@@ -16,7 +22,7 @@ export default function LoginForm() {
                 </p>
             </div>
 
-            <form action="#" className="space-y-5">
+            <form action={formAction} className="space-y-5">
                 <div className="space-y-2">
                     <Label htmlFor="email">
                         Email address
