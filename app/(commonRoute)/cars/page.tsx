@@ -1,4 +1,5 @@
 import { fetchCars } from "@/lib/fetchCars";
+import TotalProduct from "./TotalProduct";
 
 export async function generateMetadata() {
   const cars = await fetchCars()
@@ -17,6 +18,7 @@ export default async function Page() {
       {cars?.data?.map((car: any) => (
         <div key={car.id}>{car.make}</div>
       ))}
+      <TotalProduct />
     </div>
   )
 }
