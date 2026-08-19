@@ -5,7 +5,7 @@ import React from 'react'
 import TotalProduct from './TotalProduct'
 
 export async function generateMetadata() {
-  const data = await fetch("")
+  const data = await fetch("http://localhost:5000/api/v1/cars")
   const cars = await data.json()
   return {
     title: `Cars - ${cars?.data?.length || 0} cars available`,
@@ -17,9 +17,9 @@ export default async function page() {
   const cars = await data.json()
   console.log(cars)
   return (
-    <div className='p-4 border rounded'>
+    <div className='p-4 rounded'>
       <h1>Cars</h1>
-      <ul>
+      <ul className='border'>
         {cars?.data?.map((car: any) => (
           <div key={car.id}>
             <li>{car.make}{car.model}</li>
