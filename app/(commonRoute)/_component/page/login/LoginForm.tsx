@@ -2,17 +2,29 @@
 
 import Link from "next/link"
 
-import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useActionState } from "react"
+import { useActionState, useEffect } from "react"
 import { loginAction } from "@/app/(commonRoute)/_action/auth"
 import ActionButton from "../ActionButton"
+import { useRouter } from "next/navigation"
 
 export default function LoginForm() {
     const [state, formAction, pending] = useActionState(loginAction, null)
-    console.log(state, pending)
+    const route = useRouter()
+
+    useEffect(() => {
+        if (!state) return
+
+        if (!state.success) {
+            alert(state.message || "Login failed")
+        }
+        if (state.success) {
+            alert(state.message || "Login Successful")
+            route.push("/")
+        }
+    }, [state, route])
     return (
         <section className="w-full rounded-2xl border border-border bg-background p-6 shadow-sm sm:p-8">
             <div className="mb-8">
@@ -25,6 +37,7 @@ export default function LoginForm() {
 
             <form action={formAction} className="space-y-5">
                 <div className="space-y-2">
+
                     <Label htmlFor="email">
                         Email address
                     </Label>
