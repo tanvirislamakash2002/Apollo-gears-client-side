@@ -1,5 +1,7 @@
 "use server"
 
+import { cookies } from "next/headers"
+
 export async function loginAction(preSate: any, fromData: any) {
     try {
         const email = fromData.get("email")
@@ -22,7 +24,26 @@ export async function loginAction(preSate: any, fromData: any) {
         })
 
         const result = await response.json()
-        return result
+        const { accessToken, refreshToken } = result.data
+        const cookieOptions = await cookies()
+        cookieOptions.set({
+            name: "accessToken",
+            value: accessToken,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "none"
+        })
+        cookieOptions.set({
+            name: "refreshToken",
+            value: refreshToken,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "none"
+        })
+        return {
+            success: true,
+            message: "Login Successful"
+        }
     } catch (error) {
         console.log(error)
     }
