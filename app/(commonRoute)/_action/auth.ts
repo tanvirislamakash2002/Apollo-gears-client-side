@@ -33,19 +33,18 @@ export async function loginAction(preSate: any, fromData: any) {
         }
         const { accessToken, refreshToken } = result.data
         const cookieOptions = await cookies()
-        cookieOptions.set({
-            name: "accessToken",
-            value: accessToken,
+    
+        cookieOptions.set("accessToken", accessToken, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "none"
+            secure: true,
+            sameSite: "none",
+            path: "/"
         })
-        cookieOptions.set({
-            name: "refreshToken",
-            value: refreshToken,
+        cookieOptions.set("refreshToken", refreshToken, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "none"
+            secure: true,
+            sameSite: "none",
+            path: "/"
         })
         return {
             success: true,
