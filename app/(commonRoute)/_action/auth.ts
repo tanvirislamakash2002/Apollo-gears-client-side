@@ -5,7 +5,24 @@ export async function loginAction(preSate: any, fromData: any) {
         const email = fromData.get("email")
         const password = fromData.get("password")
 
-        console.log(email, password)
+        if (!email || !password) {
+            throw new Error("email and  password is required")
+        }
+
+        const response = await fetch("http://localhost:5000/api/v1/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email,
+                password
+            }),
+            cache: "no-cache"
+        })
+
+        const result = await response.json()
+        return result
     } catch (error) {
         console.log(error)
     }
