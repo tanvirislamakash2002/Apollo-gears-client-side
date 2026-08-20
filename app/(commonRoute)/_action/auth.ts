@@ -24,6 +24,13 @@ export async function loginAction(preSate: any, fromData: any) {
         })
 
         const result = await response.json()
+
+        if (!response.ok) {
+            return {
+                success: false,
+                message: result.message || "Login failed"
+            }
+        }
         const { accessToken, refreshToken } = result.data
         const cookieOptions = await cookies()
         cookieOptions.set({

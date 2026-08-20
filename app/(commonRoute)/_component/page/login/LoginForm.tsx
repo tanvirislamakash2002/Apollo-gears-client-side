@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useActionState } from "react"
 import { loginAction } from "@/app/(commonRoute)/_action/auth"
+import ActionButton from "../ActionButton"
 
 export default function LoginForm() {
     const [state, formAction, pending] = useActionState(loginAction, null)
@@ -65,9 +66,10 @@ export default function LoginForm() {
                     Remember me
                 </Label>
 
-                <Button type="submit" size="lg" className="h-11 w-full">
+                {/* <Button type="submit" size="lg" className="h-11 w-full">
                     Sign in to Apollo Gears
-                </Button>
+                </Button> */}
+                <ActionButton>Sign in to Apollo Gears</ActionButton>
             </form>
 
             <p className="mt-8 text-center text-sm text-muted-foreground">
